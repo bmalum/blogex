@@ -17,6 +17,8 @@ config :blogex, BlogexWeb.Endpoint,
   pubsub_server: Blogex.PubSub,
   live_view: [signing_salt: "prgNkNZH"]
 
+config :blogex, Blogex.Adapter, adapter: Adapter.Dets
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

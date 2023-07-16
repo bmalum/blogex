@@ -18,6 +18,7 @@ defmodule BlogexWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/blog", BlogController, :blog
   end
 
   # Other scopes may use custom stacks.
