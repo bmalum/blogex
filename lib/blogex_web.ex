@@ -17,7 +17,7 @@ defmodule BlogexWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt favicon.ico apple-touch-icon.png favicon-32x32.png favicon-16x16.png manifest.json)
 
   def router do
     quote do
@@ -68,8 +68,8 @@ defmodule BlogexWeb do
 
   def html do
     quote do
+      #use Phoenix.HTML
       use Phoenix.Component
-
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_csrf_token: 0, view_module: 1, view_template: 1]

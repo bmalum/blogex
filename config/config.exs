@@ -17,6 +17,10 @@ config :blogex, BlogexWeb.Endpoint,
   pubsub_server: Blogex.PubSub,
   live_view: [signing_salt: "prgNkNZH"]
 
+config :blogex, 
+  blog_name: "Elixir Blog",
+  theme: "basic_template"
+  
 config :blogex, Blogex.Adapter, adapter: Adapter.Dets
 
 # Configures the mailer

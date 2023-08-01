@@ -1,0 +1,22 @@
+<h1 class="text-4xl mb-6 w-full border-b-2">
+  <%= @headline %>
+</h1>
+
+<div class="blog">
+  <%= for post <- @posts do %>
+    <div id="post" class="mb-12 paper">
+      <h2 class="text-2xl font-lite p-3"><.link href={~p"/post/#{post.uuid}"})><%= post.title %> </.link></h2>
+      <div id="metadata" class="block bg-slate-200 p-3">
+       <div class="mt-2 flex items-center text-sm text-gray-500">
+        Full-time
+      </div>
+        Written at: <%= post.ts |> DateTime.from_unix! |> Calendar.strftime("%Y-%m-%d %H:%M:%S") %> Tags: <%= post.tags %> Category: <%= post.category %> Author: <%= post.author %> UUID: <%= post.uuid %>
+      </div>
+      <div id="content" class="block h-48 text-ellipsis overflow-hidden p-3 first-letter:text-2xl first-letter:font-bold mb-3">
+        <%= post.content %>
+      </div>
+      <div class="float-right text-lime-800 px-6"> read more -> </div> 
+    </div>
+  <% end %>
+</div>
+

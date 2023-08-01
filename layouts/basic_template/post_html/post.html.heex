@@ -1,0 +1,9 @@
+<div class="paper">
+    <%= if @post != nil do%>
+    <h1 class="text-2xl mb-3"> <%= @post.title %> </h1>
+    <%= @post.content  %>
+    <% else  %>
+        <h1 class="text-2xl mb-3"> Post not Found </h1>
+        Post not found
+        <% end %>
+</div>

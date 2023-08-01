@@ -14,11 +14,16 @@ defmodule Adapter.Dets do
 
   @impl Blogex.Adapter
   def get_post(id) do
-    :dets.select(:disk_storage, [{{[:_, :_, id], :_}, [], [:"$_"]}])
+    case :dets.select(:disk_storage, [{{[:_, :_, id], :_}, [], [:"$_"]}]) |> Enum.map(fn {_, v} -> v end)
+    |> Enum.sort(&(&1.ts > &2.ts)) do 
+      [] -> nil
+      [x | _] -> x
+    end 
   end
 
   @impl Blogex.Adapter
   def list_posts(blog_name) do
     :dets.select(:disk_storage, [{{[blog_name, :_, :_], :_}, [], [:"$_"]}]) |> Enum.map(fn {_, v} -> v end)
+    |> Enum.sort(&(&1.ts > &2.ts))
   end
 end

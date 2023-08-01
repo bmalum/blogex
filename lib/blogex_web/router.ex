@@ -19,6 +19,8 @@ defmodule BlogexWeb.Router do
 
     get "/", PageController, :home
     get "/blog", BlogController, :blog
+    get "/post/:id", PostController, :show
+    live "/admin/post", Post.CreateLive, :create
   end
 
   # Other scopes may use custom stacks.

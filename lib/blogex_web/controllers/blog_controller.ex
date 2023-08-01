@@ -3,6 +3,6 @@ defmodule BlogexWeb.BlogController do
 
   def blog(conn, _params) do
     posts = Blogex.Post.list_posts("bmalum")
-    render(conn, :blog, posts: posts, blog_name: "bmalum")
+    render(conn, :blog, posts: posts, headline: Application.get_env(:blogex, :headline) || "Posts")
   end
 end
