@@ -17,7 +17,8 @@ defmodule BlogexWeb.Router do
   scope "/", BlogexWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    #get "/", PageController, :home
+    get "/", BlogController, :blog
     get "/blog", BlogController, :blog
     get "/post/:id", PostController, :show
     live "/admin/post", Post.CreateLive, :create
