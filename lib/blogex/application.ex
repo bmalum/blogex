@@ -7,6 +7,15 @@ defmodule Blogex.Application do
 
   @impl true
   def start(_type, _args) do
+    :ok =
+      :telemetry.attach(
+        # unique handler id
+        "blogex-telemetry-metrics",
+        [:blogex, :plug, :stop],
+        &Blogex.Telemetry.KinesisReporter.handle_event/4,
+        nil
+      )
+
     children = [
       # Start the Telemetry supervisor
       BlogexWeb.Telemetry,
@@ -15,9 +24,10 @@ defmodule Blogex.Application do
       # Start Finch
       {Finch, name: Blogex.Finch},
       # Start the Endpoint (http/https)
-      BlogexWeb.Endpoint
+      BlogexWeb.Endpoint,
       # Start a worker by calling: Blogex.Worker.start_link(arg)
       # {Blogex.Worker, arg}
+      {Blogex.Telemetry.KinesisAgent, [Blogex.AWS.client]}
     ]
 
     Blogex.Adapter.adapter().bootstrap()
