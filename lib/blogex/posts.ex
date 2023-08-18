@@ -1,5 +1,6 @@
 defmodule Blogex.Post do
   use Ecto.Schema
+  import Ecto.Changeset
 
   embedded_schema do
     field(:blog_name, :string)
@@ -12,9 +13,15 @@ defmodule Blogex.Post do
     field(:ts, :integer)
   end
 
-  # def changeset() do
-
-  # end
+  def changeset(data, params) do
+    data
+    |> cast(params, [:author, :blog_name, :category, :content, :tags, :title, :ts, :uuid])
+    |> validate_required([:author, :blog_name, :content, :title, :ts, :uuid])
+  end
+  
+  def change_post(%Blogex.Post{} = post, params) do
+    Blogex.Post.changeset(post, params)
+  end
 
   def create_post(%Blogex.Post{} = post) do
     Blogex.Adapter.adapter().insert_post(post)

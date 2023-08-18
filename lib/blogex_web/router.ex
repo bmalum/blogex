@@ -2,6 +2,7 @@ defmodule BlogexWeb.Router do
   use BlogexWeb, :router
 
   pipeline :browser do
+    plug Plug.Telemetry, event_prefix: [:blogex, :plug]
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash

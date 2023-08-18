@@ -5,7 +5,7 @@
 <div class="blog">
   <%= for post <- @posts do %>
     <div id="post" class="mb-12 paper">
-      <h2 class="text-2xl font-lite p-3"><.link href={~p"/post/#{post.uuid}"})><%= post.title %> </.link></h2>
+      <h2 class="text-2xl font-lite p-3"><.link href={~p"/post/#{post.uuid}"}><%= post.title %> </.link></h2>
       <div id="metadata" class="block bg-slate-200 p-3">
        <div class="mt-2 flex items-center text-sm text-gray-500">
         Full-time
@@ -15,7 +15,7 @@
       <div id="content" class="block h-48 text-ellipsis overflow-hidden p-3 first-letter:text-2xl first-letter:font-bold mb-3">
         <%= post.content %>
       </div>
-      <div class="float-right text-lime-800 px-6"> read more -> </div> 
+      <div class="float-right text-lime-800 px-6"><.link href={~p"/post/#{post.uuid}"}> continue…</.link> </div> 
     </div>
   <% end %>
 </div>
